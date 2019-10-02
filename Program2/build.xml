@@ -1,0 +1,20 @@
+<!-- Super simple build.xml file -->
+
+<project default = "compile">
+
+	<!-- This is what will 'clean' the files -->
+	<target name = "clean">
+		<delete dir = "build"/>
+	</target>
+
+	<!-- This is what will compile the program -->
+	<target name = "compile">
+		<javac srcdir = "." includeantruntime = "false"/>
+	</target>
+
+	<!-- And this is what will create the executable using the WebServer class -->
+	<target name = "run" depends = "compile"> 
+		<javac classname = "WebServer" fork = "true"/>
+	</target>
+
+</project>
