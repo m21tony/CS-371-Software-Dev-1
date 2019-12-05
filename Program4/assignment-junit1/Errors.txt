@@ -1,0 +1,74 @@
+//Antonio Maldonado
+//CS 371
+//December 04,2019
+
+
+Circle.java:
+
+Scale added factor instead of multiplied: Error was found by simpleScaleDown()
+
+Original: radius = radius + factor
+Fix: radius = radius * factor;
+
+moveBy added xOffset instead of yOffset:
+
+Original: center.y = center.y + xOffset;
+Fix: Original: center.y = center.y + yOffset;
+
+
+Circle1.java
+
+Intersects error with a circle inside another circle: Error found by testInnerCircle()
+
+Original: 
+public boolean intersects(Circle other)
+{
+   if (Math.abs(center.x - other.center.x) < radius &&
+       Math.abs(center.y - other.center.y) < radius)
+      return true;
+   return false;
+}
+
+Fix:
+public boolean intersects(Circle other)
+{
+   if (Math.abs(center.x - other.center.x) < radius &&
+       Math.abs(center.y - other.center.y) < radius && radius <= other.radius)
+      return true;
+   return false;
+}
+
+
+Circle2.java:
+
+Constructor error, uses incorrect parameter values: Error found by simpleMove() and simpleMoveNeg()
+
+Original: super(y,x,radius);
+Fix: super(x,y,radius);
+
+Intersects error with a circle inside another circle: Error found by testInnerCircle()
+
+Original: 
+public boolean intersects(Circle other)
+{
+   double d;
+   d = Math.sqrt(Math.pow(center.x - other.center.x, 2) + 
+                 Math.pow(center.y - other.center.y, 2));
+   if (d < radius)
+      return true;
+   else
+      return false;
+}
+
+Fix: 
+public boolean intersects(Circle other)
+{
+   double d;
+   d = Math.sqrt(Math.pow(center.x - other.center.x, 2) + 
+                 Math.pow(center.y - other.center.y, 2));
+   if (d < radius && radius <= other.radius)
+      return true;
+   else
+      return false;
+}
+
